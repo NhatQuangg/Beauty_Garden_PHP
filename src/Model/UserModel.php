@@ -31,4 +31,16 @@ class UserModel
         return $result->fetch_assoc();
     }
 
+    public function registerUser($hotenkh, $diachikh, $sodienthoaikh, $emailkh, $tendangnhapkh, $matkhaukh)
+    {
+        $hotenkh =  $this->mysqli->real_escape_string($hotenkh); 
+        $diachikh =  $this->mysqli->real_escape_string($diachikh);
+        $sodienthoaikh =  $this->mysqli->real_escape_string($sodienthoaikh); 
+        $emailkh =  $this->mysqli->real_escape_string($emailkh);
+        $tendangnhapkh =  $this->mysqli->real_escape_string($tendangnhapkh); 
+        $matkhaukh =  $this->mysqli->real_escape_string($matkhaukh); 
+
+        return $this->mysqli->query("INSERT INTO khachhang (hotenkh, diachikh, sodienthoaikh, emailkh, tendangnhapkh, matkhaukh) 
+        VALUES ('$hotenkh', '$diachikh', $sodienthoaikh, '$emailkh', '$tendangnhapkh', '$matkhaukh')");
+    }
 }

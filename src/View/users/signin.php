@@ -20,16 +20,36 @@
             Bạn chưa có tài khoản? <a href="dangki.jsp" style="font-style: italic;">Đăng kí</a>
         </p>
     </div> -->
-
 </form>
+<?php $content = ob_get_clean(); ?>
+<?php include(__DIR__ .  '/../../../templates/signin_templates.php'); ?>
+
 <?php
 session_start();
 
 if (isset($_SESSION['flash_message'])) {
-    $message = $_SESSION['flash_message'];
+?>
+    <div id="myToast" class="toast position-absolute top-0 end-0 m-3">
+        <div class="toast-header">
+            <strong class="me-auto">Thông báo</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+        </div>
+        <div class="toast-body">
+            <p>Đăng ký thành công</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var myToast = new bootstrap.Toast(document.getElementById('myToast'));
+            myToast.show();
+            setTimeout(function() {
+                myToast.hide();
+            }, 1000000);
+        });
+    </script>
+
+<?php
     unset($_SESSION['flash_message']);
-    echo $message . '<br>';
 }
 ?>
-<?php $content = ob_get_clean(); ?>
-<?php include(__DIR__ .  '/../../../templates/signin_templates.php'); ?>

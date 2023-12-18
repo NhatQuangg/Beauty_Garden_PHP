@@ -1018,3 +1018,11 @@ h6 {
 
 
 
+/* ------------------------------ */
+.hidden {
+  display: none;
+}
+
+#myToast .btn-close {
+  font-size: 1.5rem;
+}
