@@ -22,7 +22,7 @@ class UserModel
             die("Connection failed: " . $this->mysqli->connect_error);
         }
     }
-    
+
     public function getUserByUsername($username)
     {
         $userId = $this->mysqli->real_escape_string($username);
@@ -33,14 +33,22 @@ class UserModel
 
     public function registerUser($hotenkh, $diachikh, $sodienthoaikh, $emailkh, $tendangnhapkh, $matkhaukh)
     {
-        $hotenkh =  $this->mysqli->real_escape_string($hotenkh); 
+        $hotenkh =  $this->mysqli->real_escape_string($hotenkh);
         $diachikh =  $this->mysqli->real_escape_string($diachikh);
-        $sodienthoaikh =  $this->mysqli->real_escape_string($sodienthoaikh); 
+        $sodienthoaikh =  $this->mysqli->real_escape_string($sodienthoaikh);
         $emailkh =  $this->mysqli->real_escape_string($emailkh);
-        $tendangnhapkh =  $this->mysqli->real_escape_string($tendangnhapkh); 
-        $matkhaukh =  $this->mysqli->real_escape_string($matkhaukh); 
+        $tendangnhapkh =  $this->mysqli->real_escape_string($tendangnhapkh);
+        $matkhaukh =  $this->mysqli->real_escape_string($matkhaukh);
 
-        return $this->mysqli->query("INSERT INTO khachhang (hotenkh, diachikh, sodienthoaikh, emailkh, tendangnhapkh, matkhaukh) 
-        VALUES ('$hotenkh', '$diachikh', $sodienthoaikh, '$emailkh', '$tendangnhapkh', '$matkhaukh')");
+        // Kiểm tra xem tendangnhapkh đã tồn tại hay chưa
+        $checkQuery = $this->mysqli->query("SELECT COUNT(*) AS count FROM khachhang WHERE tendangnhapkh = '$tendangnhapkh'");
+        // lấy một hàng dữ liệu từ kết quả truy vấn dưới dạng một mảng kết hợp (associative array)
+        $result = $checkQuery->fetch_assoc();
+
+        if ($result['count'] > 0) {
+            return null;
+        } else
+            return $this->mysqli->query("INSERT INTO khachhang (hotenkh, diachikh, sodienthoaikh, emailkh, tendangnhapkh, matkhaukh) 
+            VALUES ('$hotenkh', '$diachikh', $sodienthoaikh, '$emailkh', '$tendangnhapkh', '$matkhaukh')");
     }
 }

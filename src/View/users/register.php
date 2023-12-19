@@ -1,6 +1,6 @@
 <?php ob_start(); ?>
 
-<form class="row g-3 needs-validation" method="post" action="/user/<?= isset($user['id']) ? "update/$user[id]" : 'create' ?>">
+<form class="row g-3 needs-validation" method="post" action="/user/<?= isset($user['id']) ? "update/$user[id]" : 'register' ?>">
     <div class="col-12">
         <label for="yourName" class="form-label">Họ tên</label>
         <input type="text" name="txtname" class="form-control" id="" required>
@@ -25,6 +25,20 @@
         <label for="yourAd" class="form-label">Địa chỉ</label>
         <input type="text" name="txtad" class="form-control" id="" required>
     </div>
+    <?php
+    session_start();
+
+    if (isset($_SESSION['message_register_failed'])) {
+        unset($_SESSION['message_register_failed']);
+    ?>
+        <div class="col-12">
+            <p class="small mb-0 text-center text-danger" style="font-style: italic;">Tên đăng nhập đã tồn tại</p>
+        </div>
+    <?php
+    }
+
+    ?>
+
     <div class="col-12">
         <input class="btn btn-primary w-100" type="submit" value="<?= isset($user['id']) ? 'Update' : 'Tạo tài khoản' ?>">
 

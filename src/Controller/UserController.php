@@ -45,13 +45,16 @@ class UserController extends Controller
         if ($user) {
             // Redirect to the user list page or show a success message
             session_start();
-            $_SESSION['flash_message'] = "Đăng ký thành công";
+            $_SESSION['message_register_success'] = "Đăng ký thành công";
             header('Location: /user/signin');
             // echo "Register Success";
             exit();
         } else {
             // Handle the case where the user creation failed
-            echo 'Register failed';
+            // echo 'Register failed';
+            session_start();
+            $_SESSION['message_register_failed'] = "Tên đăng nhập đã tồn tại.";
+            header('Location: /user/register');
         }
     }
 
@@ -59,6 +62,9 @@ class UserController extends Controller
     {
         $this->render('homes\home', []);
     }
+    // public function showRegister() {
+    //     $this->render('users\register', []);
+    // }
 
     public function logout()
     {

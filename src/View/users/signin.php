@@ -15,19 +15,36 @@
     <div class="col-12">
         <button class="btn btn-primary w-100" type="submit" value="Đăng nhập">Đăng nhập</button>
     </div>
-    <!-- <div class="col-12">
+    <div class="col-12">
         <p class="small mb-0">
-            Bạn chưa có tài khoản? <a href="dangki.jsp" style="font-style: italic;">Đăng kí</a>
+            Bạn chưa có tài khoản? <a href="/user/register" style="font-style: italic;">Đăng kí</a>
         </p>
-    </div> -->
+    </div>
+    <?php
+    session_start();
+
+    if (isset($_SESSION['flash_message'])) {
+        unset($_SESSION['flash_message']);
+    ?>
+        <div class="col-12">
+            <p class="small mb-0 text-center text-danger" style="font-style: italic;">
+                Đăng nhập sai. Vui lòng thử lại
+            </p>
+        </div>
+    <?php
+    }
+    ?>
+
 </form>
+
+
 <?php $content = ob_get_clean(); ?>
 <?php include(__DIR__ .  '/../../../templates/signin_templates.php'); ?>
 
 <?php
 session_start();
 
-if (isset($_SESSION['flash_message'])) {
+if (isset($_SESSION['message_register_success'])) {
 ?>
     <div id="myToast" class="toast position-absolute top-0 end-0 m-3">
         <div class="toast-header">
@@ -50,6 +67,6 @@ if (isset($_SESSION['flash_message'])) {
     </script>
 
 <?php
-    unset($_SESSION['flash_message']);
+    unset($_SESSION['message_register_success']);
 }
 ?>
