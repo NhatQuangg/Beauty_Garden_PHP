@@ -19,11 +19,10 @@ class AuthenticationController {
             if ($user && $matkhaukh === $user['matkhaukh']) {
                 session_start();
                 $_SESSION['currentUser'] = $user;
-    
+                // $_SESSION['makhachhang'] = $user['makhachhang'];
                 // Redirect to index.php
-                $_SESSION['flash_message'] = "Login was successful";
-                header("Location: ../home/show/");
-                session_destroy();
+                //$_SESSION['flash_message'] = "Login was successful";
+                header("Location: ../sanpham/show");
                 exit();
             } else {
                 // Authentication failed, redirect to signin.php
@@ -32,7 +31,7 @@ class AuthenticationController {
                 header("Location: ../user/signin");
                 exit();
             }
-            header("Location: ../home/show/");
+            header("Location: ../sanpham/show/");
         }
 
         

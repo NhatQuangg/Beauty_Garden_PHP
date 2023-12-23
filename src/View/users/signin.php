@@ -1,5 +1,19 @@
 <?php ob_start(); ?>
 
+<div class="d-flex justify-content-center py-4">
+    <a href="/index" class="logo d-flex align-items-center w-auto">
+        <img src="../src/assets/img/logo.png" alt="">
+        <span class="d-none d-lg-block">BeautyGarden</span>
+    </a>
+</div>
+
+
+<?php $contentt = ob_get_clean(); ?>
+
+
+
+<?php ob_start(); ?>
+
 <form class="row g-3 needs-validation" method="post" action="/auth/validate">
     <div class="col-12">
         <label for="yourUsername" class="form-label">Tên đăng nhập</label>
@@ -42,7 +56,7 @@
 <?php include(__DIR__ .  '/../../../templates/signin_templates.php'); ?>
 
 <?php
-session_start();
+// session_start();
 
 if (isset($_SESSION['message_register_success'])) {
 ?>

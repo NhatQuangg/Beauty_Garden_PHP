@@ -14,6 +14,9 @@ class UserController extends Controller
         $this->userModel = new UserModel();
     }
 
+    public function index(){
+        $this->render('sanphams\index', []);
+    }
 
     public function signin()
     {
@@ -25,8 +28,6 @@ class UserController extends Controller
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $this->processForm();
         } else {
-            // Display the form for creating a new user
-            //include 'views/user-form.php';
             $this->render('users\register', ['user' => []]);
         }
     }
@@ -40,9 +41,10 @@ class UserController extends Controller
         $matkhaukh =  $_POST['txtpass'];
 
         // Call the model to create a new user
-        $user = $this->userModel->registerUser($hotenkh, $diachikh, $sodienthoaikh, $emailkh, $tendangnhapkh, $matkhaukh);
+        $makhachhang = $this->userModel->registerUser($hotenkh, $diachikh, $sodienthoaikh, $emailkh, $tendangnhapkh, $matkhaukh);
+        $this->userModel->createNewCart($makhachhang);
 
-        if ($user) {
+        if ($makhachhang) {
             // Redirect to the user list page or show a success message
             session_start();
             $_SESSION['message_register_success'] = "Đăng ký thành công";
@@ -51,31 +53,26 @@ class UserController extends Controller
             exit();
         } else {
             // Handle the case where the user creation failed
-            // echo 'Register failed';
             session_start();
             $_SESSION['message_register_failed'] = "Tên đăng nhập đã tồn tại.";
             header('Location: /user/register');
         }
     }
-
-    public function showHome()
-    {
-        $this->render('homes\home', []);
-    }
-    // public function showRegister() {
-    //     $this->render('users\register', []);
-    // }
-
+    
     public function logout()
-    {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            session_start();
-            if (isset($_SESSION['currentUser'])) {
-                unset($_SESSION['currentUser']);
-                session_destroy();
-                header("Location: ../showHome");
-                exit();
-            }
+    {   
+        session_start();
+        if (isset($_SESSION['currentUser'])) {
+            // Unset và hủy session
+            unset($_SESSION['currentUser']);
+            session_destroy();
+            header("Location: ../index");
+            // header('Location: /user/register');
+            exit();
+        }
+        else {
+            header('Location: /user/signin');
         }
     }
+
 }

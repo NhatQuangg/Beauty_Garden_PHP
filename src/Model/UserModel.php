@@ -47,8 +47,22 @@ class UserModel
 
         if ($result['count'] > 0) {
             return null;
-        } else
-            return $this->mysqli->query("INSERT INTO khachhang (hotenkh, diachikh, sodienthoaikh, emailkh, tendangnhapkh, matkhaukh) 
+        } else {
+            $this->mysqli->query("INSERT INTO khachhang (hotenkh, diachikh, sodienthoaikh, emailkh, tendangnhapkh, matkhaukh) 
             VALUES ('$hotenkh', '$diachikh', $sodienthoaikh, '$emailkh', '$tendangnhapkh', '$matkhaukh')");
+
+            $result = $this->mysqli->query("SELECT LAST_INSERT_ID() AS makhachhang");
+            $row = $result->fetch_assoc();
+            $makhachhang = $row['makhachhang'];
+
+            return $makhachhang;
+        }
+    }
+
+    public function createNewCart($makhachhang)
+    {
+        $insertResult = $this->mysqli->query("INSERT INTO giohang (makhachhang, tongtien, trangthai) VALUES ($makhachhang, 0, 0)");
+
+        return $insertResult;
     }
 }
