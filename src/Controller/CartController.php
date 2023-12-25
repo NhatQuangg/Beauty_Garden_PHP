@@ -28,7 +28,7 @@ class CartController extends Controller
 
         $mgh = $magiohang['magiohang'];
         
-        $machitietgiohang = $this->cartModel->getMaChiTietGioHang($mgh);
+        $machitietgiohangs = $this->cartModel->getMaChiTietGioHang($mgh);
 
         $tongtien = $this->cartModel->calculateTotalPrice($mgh);
 
@@ -37,12 +37,12 @@ class CartController extends Controller
 
         $this->cartModel->updateTotalPriceForCart($mgh, $total);
 
-        $data = ['ctghs' => $ctghs, 'magiohang' => $magiohang, 'machitietgiohang' => $machitietgiohang, 'tongtien' => $tongtien];
+        $data = ['ctghs' => $ctghs, 'magiohang' => $magiohang, 'machitietgiohangs' => $machitietgiohangs, 'tongtien' => $tongtien];
 
         $this->render('cart\cart', $data);
     }
 
-    public function updateTrangThai($makhachhang)
+    public function orderItem($makhachhang)
     {
         $mgh = $_POST['mgh'];
 
@@ -55,29 +55,27 @@ class CartController extends Controller
         $cthd = $this->cartModel->insertChiTietHoaDon($mahoadon, $mgh);
 
         $giohang = $this->cartModel->deleteChiTietGioHang($mgh);
-        if ($giohang && $mahoadon && $cthd) {
-            // echo "thanh cong";
+        if ($giohang && $mahoadon && $cthd && $giohang) {
             header("Location: ../index");
             exit();
         } else {
-            // Handle the case where the user creation failed
             echo 'update xac nhan failed.';
         }
     }
 
-    public function DeleteCart()
+    public function deleteCart()
     {
         $mgh = $_POST['mgh'];
-        $this->cartModel->deleteCart($mgh);
+        $this->cartModel->deleteChiTietGioHang($mgh);
         header("Location: ../index");
     }
 
-    public function deleteOne($masanpham, $magiohang, $makhachhang)
+    public function deleteOne($masanpham, $magiohang, $makhachhang, $machitietgiohang)
     {
-        $machitietgiohang = $this->cartModel->getMaChiTietGioHang($magiohang);
+        //$machitietgiohang = $this->cartModel->getMaChiTietGioHang_2($magiohang, $machitietgiohang);
+        //$mctgh = $machitietgiohang['machitietgiohang'];
 
-        $mctgh = $machitietgiohang['machitietgiohang'];
-        $this->cartModel->deleteOne($masanpham, $magiohang, $makhachhang, $mctgh);
+        $this->cartModel->deleteOne($masanpham, $magiohang, $makhachhang, $machitietgiohang);
 
         header("Location: /ctgh/$makhachhang");
     }
@@ -102,7 +100,7 @@ class CartController extends Controller
     public function updateSoLuongMua($machitietgiohang, $makhachhang)
     {
         $slm = $_POST['txtsl'];
-        // echo $slm;
+
         $this->cartModel->updateSoLuongMua($machitietgiohang, $slm);
 
         header("Location: /ctgh/$makhachhang");

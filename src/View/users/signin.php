@@ -8,7 +8,7 @@
 </div>
 
 
-<?php $contentt = ob_get_clean(); ?>
+<?php $logo = ob_get_clean(); ?>
 
 
 
@@ -52,11 +52,10 @@
 </form>
 
 
-<?php $content = ob_get_clean(); ?>
+<?php $form_signin = ob_get_clean(); ?>
 <?php include(__DIR__ .  '/../../../templates/signin_templates.php'); ?>
 
 <?php
-// session_start();
 
 if (isset($_SESSION['message_register_success'])) {
 ?>

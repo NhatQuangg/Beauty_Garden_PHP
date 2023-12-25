@@ -24,7 +24,7 @@ class CartModel
     public function getAllCtghChuaXacNhan($makhachhang)
     {
         $result = $this->mysqli->query(
-            "SELECT ctg.masanpham, ctg.anh, ctg.tensanpham, ctg.soluongmua, sp.gia, (ctg.soluongmua * sp.gia) as tongtien
+            "SELECT ctg.masanpham, ctg.machitietgiohang ,ctg.anh, ctg.tensanpham, ctg.soluongmua, sp.gia, (ctg.soluongmua * sp.gia) as tongtien
             FROM giohang cg
             JOIN chitietgiohang ctg ON cg.magiohang = ctg.magiohang
             JOIN sanpham sp ON ctg.masanpham = sp.masanpham
@@ -43,11 +43,20 @@ class CartModel
     {
 
         $magiohang = $this->mysqli->real_escape_string($magiohang);
-        // $chuoi_gio_hang = implode(',', $magiohang);
         $result = $this->mysqli->query("SELECT machitietgiohang FROM chitietgiohang WHERE magiohang = $magiohang");
 
         return $result->fetch_assoc();
     }
+
+    // public function getMaChiTietGioHang_2($magiohang, $machitietgiohang)
+    // {
+
+    //     $magiohang = $this->mysqli->real_escape_string($magiohang);
+    //     $machitietgiohang = $this->mysqli->real_escape_string($machitietgiohang);
+    //     $result = $this->mysqli->query("SELECT machitietgiohang FROM chitietgiohang WHERE magiohang = $magiohang AND machitietgiohang = $machitietgiohang");
+
+    //     return $result->fetch_assoc();
+    // }
 
     public function insertHoaDon($makhachhang, $total)
     {

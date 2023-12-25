@@ -40,19 +40,15 @@ class UserController extends Controller
         $tendangnhapkh = $_POST['txtun'];
         $matkhaukh =  $_POST['txtpass'];
 
-        // Call the model to create a new user
         $makhachhang = $this->userModel->registerUser($hotenkh, $diachikh, $sodienthoaikh, $emailkh, $tendangnhapkh, $matkhaukh);
-        $this->userModel->createNewCart($makhachhang);
-
+        
         if ($makhachhang) {
-            // Redirect to the user list page or show a success message
+            $this->userModel->createNewCart($makhachhang);
             session_start();
             $_SESSION['message_register_success'] = "Đăng ký thành công";
             header('Location: /user/signin');
-            // echo "Register Success";
             exit();
         } else {
-            // Handle the case where the user creation failed
             session_start();
             $_SESSION['message_register_failed'] = "Tên đăng nhập đã tồn tại.";
             header('Location: /user/register');

@@ -27,7 +27,7 @@
 				<div class="container">
 					<div class="row justify-content-center">
 						<div class="col-lg-5 col-md-6 d-flex flex-column align-items-center justify-content-center">
-							<?= $contentt ?>
+							<?= $logo ?>
 							<!-- End Logo -->
 
 							<div class="card mb-3">
@@ -36,7 +36,7 @@
 										<h5 class="card-title text-center pb-0">Đăng nhập</h5>
 										<p class="text-center small">Nhập tên đăng nhập và mật khẩu của bạn</p>
 									</div>
-									<?= $content ?>
+									<?= $form_signin ?>
 								</div>
 							</div>
 						</div>

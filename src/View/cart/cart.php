@@ -113,11 +113,11 @@ if (isUserLoggedIn()) {
                 <td>
                     <p><?= $ctgh['tensanpham'] ?></p>
                     <!-- Xóa 1 sản phẩm -->
-                    <a href="/cart/deleteone/<?= $ctgh['masanpham'] ?>/<?= $magiohang['magiohang']; ?>/<?= $makhachhang; ?>" class="mt-3 ms-3"><i class="bi bi-trash"></i></a>
+                    <a href="/cart/deleteone/<?= $ctgh['masanpham'] ?>/<?= $magiohang['magiohang']; ?>/<?= $makhachhang; ?>/<?= $ctgh['machitietgiohang'] ?>" class="mt-3 ms-3"><i class="bi bi-trash"></i></a>
                 </td>
                 <td><?= $ctgh['gia'] ?>₫</td>
                 <td>
-                    <form class="input-group mb-3" action="/cart/update/<?php echo $machitietgiohang['machitietgiohang'] ?>/<?= $makhachhang; ?>" method="post">
+                    <form class="input-group mb-3" action="/cart/update/<?= $ctgh['machitietgiohang'] ?>/<?= $makhachhang; ?>" method="post">
                         <div class="input-group">
                             <input style="width:40px;" min="1" name="txtsl" type="number" class="form-control" value="<?= $ctgh['soluongmua'] ?>">
                             <button class="btn btn-primary" type="submit" name="but1"><i class="bi bi-save"></i></button>
@@ -139,8 +139,8 @@ if (isUserLoggedIn()) {
 
 <?php ob_start(); ?>
 
-<?php if (!empty($machitietgiohang['machitietgiohang'])) { ?>
-    <form method="post" action="/cart/add/<?php echo $makhachhang ?>" class="mt-2" style="display: inline-block;">
+<?php if (!empty($machitietgiohangs['machitietgiohang'])) { ?>
+    <form method="post" action="/cart/addbill/<?php echo $makhachhang ?>" class="mt-2" style="display: inline-block;">
         <input type="submit" class="btn btn-primary" name="b1" value="Mua hàng">
         <input type="hidden" class="btn btn-primary" name="mgh" value=<?php echo $magiohang['magiohang']; ?>>
     </form>

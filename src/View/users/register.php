@@ -6,13 +6,13 @@
     </a>
 </div>
 
-<?php $contentt = ob_get_clean();
+<?php $logo = ob_get_clean();
 ?>
 
 
 <?php ob_start(); ?>
 
-<form class="row g-3 needs-validation" method="post" action="/user/<?= isset($user['id']) ? "update/$user[id]" : 'register' ?>">
+<form class="row g-3 needs-validation" method="post" action="/user/register">
     <div class="col-12">
         <label for="yourName" class="form-label">Họ tên</label>
         <input type="text" name="txtname" class="form-control" id="" required>
@@ -63,6 +63,6 @@
 
 </form>
 
-<?php $content = ob_get_clean();
+<?php $form_register = ob_get_clean();
 ?>
 <?php include(__DIR__ .  '/../../../templates/register_templates.php'); ?>
