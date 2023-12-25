@@ -1,3 +1,5 @@
+
+
 <?php ob_start(); ?>
 
 <?php
@@ -148,10 +150,6 @@ if (isUserLoggedIn()) {
         <input type="submit" class="btn btn-primary" name="b1" value="Xóa toàn bộ">
         <input type="hidden" class="btn btn-primary" name="mgh" value=<?php echo $magiohang['magiohang']; ?>>
     </form>
-    <form id="checkbox" method="post" action="" class="mt-2" style="display: inline-block;">
-        <input type="submit" class="btn btn-primary" name="b1" value="Xóa checkbox">
-        <input type="hidden" class="btn btn-primary" name="mgh" value=<?php echo $magiohang['magiohang']; ?>>
-    </form>
 <?php } else { ?>
     <form method="post" action="/cart/add" class="mt-2" style="display: inline-block;">
         <input type="submit" class="btn btn-primary" name="b1" value="Mua hàng" disabled>
@@ -159,9 +157,9 @@ if (isUserLoggedIn()) {
     <form method="post" action="/cart/deleteall/" class="mt-2" style="display: inline-block;">
         <input type="submit" class="btn btn-primary" name="b1" value="Xóa toàn bộ" disabled>
     </form>
-    <form id="checkbox" method="post" action="xoacheckgiohangcontroller" class="mt-2" style="display: inline-block;">
+    <!-- <form id="checkbox" method="post" action="xoacheckgiohangcontroller" class="mt-2" style="display: inline-block;">
         <input type="submit" class="btn btn-primary" name="b1" value="Xóa checkbox" disabled>
-    </form>
+    </form> -->
 <?php  } ?>
 
 

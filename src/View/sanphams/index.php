@@ -1,4 +1,24 @@
 <?php ob_start(); ?>
+<!-- Bắt đầu bộ nhớ đệm đầu ra để chứa HTML và PHP -->
+<aside id="sidebar" class="sidebar">
+    <ul class="sidebar-nav" id="sidebar-nav">
+        <?php foreach ($loais as $loai) : ?>
+            <li class="nav-item"> <!-- Thêm thẻ li bao quanh mỗi mục -->
+                <a class="nav-link collapsed" href="">
+                    <i class="bi bi-circle"></i>
+                    <span><?= $loai['tenloai'] ?></span>
+                </a>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+</aside>
+
+<!-- Kết thúc thanh sidebar -->
+
+
+<?php $contentttt = ob_get_clean(); ?>
+
+<?php ob_start(); ?>
 
 <?php
 session_start();
@@ -36,7 +56,7 @@ if (isUserLoggedIn()) {
 
         <!-- Profile -->
         <li>
-            <a class="dropdown-item d-flex align-items-center" href="profilecontroller">
+            <a class="dropdown-item d-flex align-items-center" href="">
                 <i class="bi bi-person"></i>
                 <span>Hồ sơ của tôi</span>
             </a>
@@ -47,7 +67,7 @@ if (isUserLoggedIn()) {
 
         <!-- Profile -->
         <li>
-            <a class="dropdown-item d-flex align-items-center" href="lichsumuahangcontroller">
+            <a class="dropdown-item d-flex align-items-center" href="">
                 <i class="bi bi-clock-history"></i>
                 <span>Đơn mua</span>
             </a>

@@ -32,7 +32,7 @@
 
 		<!-- Tìm kiếm -->
 		<div class="search-bar">
-			<form class="search-form d-flex align-items-center" method="post" action="">
+			<form class="search-form d-flex align-items-center" method="post" action="/sanphams/timkiemList">
 				<input type="text" placeholder="Tìm kiếm" name="search">
 				<button type="submit" title="Tìm kiếm" name="but1">
 					<i class="bi bi-search"></i>
@@ -66,7 +66,7 @@
 					<!-- End Profile Image Icon -->
 
 					<?= $contentt ?>
-					
+
 					<!-- End Profile Dropdown Items -->
 				</li>
 				<!-- End Profile Nav -->
@@ -77,7 +77,7 @@
 	<!-- End Header -->
 
 	<!-- ======= Sidebar ======= -->
-	<aside id="sidebar" class="sidebar">
+	<!-- <aside id="sidebar" class="sidebar">
 		<ul class="sidebar-nav" id="sidebar-nav">
 			<li class="nav-item">
 				<a class="nav-link collapsed" href="">
@@ -93,13 +93,14 @@
 			</li>
 
 		</ul>
-	</aside>
+	</aside> -->
 	<!-- End Sidebar-->
+	<?= $contentttt ?>
 
 	<!-- =============== Main ============== -->
 	<!-- =============== Main ============== -->
-	
-<main id="main" class="main" style="min-height: 625px;">
+
+	<main id="main" class="main" style="min-height: 625px;">
 		<section class="section">
 			<div class="row">
 				<?= $content ?>

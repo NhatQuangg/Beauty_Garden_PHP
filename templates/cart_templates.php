@@ -38,8 +38,8 @@
 
 		<!-- Tìm kiếm -->
 		<div class="search-bar">
-			<form class="search-form d-flex align-items-center" method="post" action="trangchucontroller">
-				<input type="text" placeholder="Tìm kiếm" name="txttim">
+			<form class="search-form d-flex align-items-center" method="post" action="/sanphams/timkiemList">
+				<input type="text" placeholder="Tìm kiếm" name="search">
 				<button type="submit" title="Tìm kiếm" name="but1">
 					<i class="bi bi-search"></i>
 				</button>
@@ -104,7 +104,7 @@
 		</section>
 
 		<?= $contenttt ?>
-		
+
 	</main>
 
 	<!-- ===================== Footer ====================== -->
