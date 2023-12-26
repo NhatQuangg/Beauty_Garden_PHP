@@ -78,7 +78,10 @@ class LoaiController extends Controller
             exit();
         } else {
             // Handle the case where the user creation failed
-            echo 'User creation failed.';
+            session_start();
+            $_SESSION['message_add_fail'] = "Thêm loại sai";
+            header('Location: /loai/loailist');
+            // echo 'User creation failed.';
         }
     }
 

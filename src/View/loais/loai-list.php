@@ -41,6 +41,16 @@
     </div>
 </form>
 
+<?php
+session_start();
+
+if (isset($_SESSION['message_add_fail'])) {
+    $message = $_SESSION['message_add_fail'];
+    unset($_SESSION['message_add_fail']);
+?>
+    <p class="big mb-0 text-left text-danger" style="font-style: italic;">Mã loại đã tồn tại</p>
+<?php  }  ?>
+
 <h4 class="card-title">Danh sách loại</h4>
 <!-- Đã xác nhận -->
 <table class="table table-bordered">
@@ -65,13 +75,14 @@
                 </td>
                 <td style="text-align: center;">
                     <a href="/loai/delete/<?= $loai['maloai'] ?>">Xóa</a>
-                    
+
                 </td>
 
             </tr>
         <?php endforeach; ?>
     </tbody>
 </table>
+
 
 
 <?php $content = ob_get_clean(); ?>

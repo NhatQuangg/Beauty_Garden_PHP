@@ -14,7 +14,8 @@ class KhachhangController extends Controller
         $this->khachhangModel = new KhachhangModel();
     }
 
-    public function index(){
+    public function index()
+    {
         $this->render('khachhangs\index', []);
     }
 
@@ -28,20 +29,21 @@ class KhachhangController extends Controller
     public function show($makhachhang)
     {
         $khachhang = $this->khachhangModel->getkhachhangById($makhachhang);
-        $this->render('khachhangs\khachhang-form', ['khachhang' => $khachhang]);  
+        $this->render('khachhangs\khachhang-form', ['khachhang' => $khachhang]);
     }
 
     public function update($makhachhang)
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $this->processFormUpdate($makhachhang);        
+            $this->processFormUpdate($makhachhang);
         } else {
             $khachhang = $this->khachhangModel->getkhachhangById($makhachhang);
             $this->render('khachhangs\khachhang-form', ['khachhang' => $khachhang]);
-        }        
+        }
     }
-    
-    private function processFormUpdate($makhachhang){
+
+    private function processFormUpdate($makhachhang)
+    {
         $makhachhang =  $_POST['makhachhang'];
         $hotenkh =  $_POST['hotenkh'];
         $diachikh =  $_POST['diachikh'];
@@ -49,7 +51,7 @@ class KhachhangController extends Controller
         $emailkh =  $_POST['emailkh'];
         $tendangnhapkh =  $_POST['tendangnhapkh'];
         $matkhaukh =  $_POST['matkhaukh'];
-       
+
         // Call the model to create a new user
         $khachhang = $this->khachhangModel->updatekhachhang($makhachhang, $hotenkh, $diachikh, $sodienthoaikh, $emailkh, $tendangnhapkh, $matkhaukh);
 
@@ -61,17 +63,18 @@ class KhachhangController extends Controller
         }
     }
 
-    
+
     public function add()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $this->processForm();
         } else {
             $this->render('khachhangs\khachhang-list', ['khachhang' => []]);
-        }       
+        }
     }
 
-    private function processForm(){
+    private function processForm()
+    {
         $makhachhang =  $_POST['makhachhang'];
         $hotenkh =  $_POST['hotenkh'];
         $diachikh =  $_POST['diachi'];
@@ -93,11 +96,10 @@ class KhachhangController extends Controller
     }
 
 
-    
+
     public function delete($makhachhang)
-    {       
+    {
         $this->khachhangModel->deletekhachhang($makhachhang);
         header('Location: /kh/khachhanglist'); // Chuyển hướng về trang danh sách sản phẩm sau khi xóa
     }
-    
 }

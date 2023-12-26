@@ -70,8 +70,14 @@ class AdSanphamModel
         $thongtinsanpham = $this->mysqli->real_escape_string($thongtinsanpham);
         $maloai = $this->mysqli->real_escape_string($maloai);
 
+        $existingSanPham = $this->mysqli->query("SELECT masanpham FROM sanpham WHERE masanpham = '$masanpham'");
 
-        return $this->mysqli->query("INSERT INTO sanpham (masanpham,tensanpham,soluong,gia,anh,ngaynhap,tomtat,thongtinsanpham,maloai) VALUES ('$masanpham','$tensanpham','$soluong','$gia','$anh','$ngaynhap','$tomtat','$thongtinsanpham','$maloai')");
+        if ($existingSanPham->num_rows > 0) {
+            return false;
+        } else {
+            return $this->mysqli->query("INSERT INTO sanpham (masanpham,tensanpham,soluong,gia,anh,ngaynhap,tomtat,thongtinsanpham,maloai) VALUES ('$masanpham','$tensanpham','$soluong','$gia','$anh','$ngaynhap','$tomtat','$thongtinsanpham','$maloai')");
+        }
+
     
     }
 

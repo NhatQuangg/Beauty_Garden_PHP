@@ -116,7 +116,10 @@ class AdSanphamController extends Controller
             exit();
         } else {
             // Handle the case where the user creation failed
-            echo 'User creation failed.';
+            session_start();
+            $_SESSION['message_addsp_fail'] = "Thêm sản phẩm sai";
+            header('Location: /sanpham/sanphamlist');
+            // echo 'User creation failed.';
         }
     }
 

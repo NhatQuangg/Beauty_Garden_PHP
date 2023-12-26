@@ -14,7 +14,7 @@ use App\Controller\LoaiController;
 // Usage:
 $router = new Router();
 
-// Nếu muốn chạy admin thì mở comment các câu lệnh routes của admin ở dưới
+
 
 // -------------------------------------------------------------------------------
 //                               USER

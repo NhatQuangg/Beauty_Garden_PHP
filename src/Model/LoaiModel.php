@@ -36,28 +36,34 @@ class LoaiModel
         return $result->fetch_assoc();
     }
 
-    public function updateloai($maloai,$tenloai)
+    public function updateloai($maloai, $tenloai)
     {
         $maloai = $this->mysqli->real_escape_string($maloai);
         $tenloai = $this->mysqli->real_escape_string($tenloai);
-       
+
         return $this->mysqli->query("UPDATE loai SET  tenloai='$tenloai' WHERE maloai='$maloai'");
     }
 
-    public function addloai($maloai,$tenloai)
+    public function addloai($maloai, $tenloai)
     {
-        
+
         $maloai = $this->mysqli->real_escape_string($maloai);
         $tenloai = $this->mysqli->real_escape_string($tenloai);
-       
-        return $this->mysqli->query("INSERT INTO loai (maloai,tenloai) VALUES ('$maloai','$tenloai')");
-    
+
+        // return $this->mysqli->query("INSERT INTO loai (maloai,tenloai) VALUES ('$maloai','$tenloai')");
+
+        $existingLoai = $this->mysqli->query("SELECT maloai FROM loai WHERE maloai = '$maloai'");
+
+        if ($existingLoai->num_rows > 0) {
+            return false;
+        } else {
+            return $this->mysqli->query("INSERT INTO loai (maloai, tenloai) VALUES ('$maloai', '$tenloai')");
+        }
     }
 
     public function deleteloai($maloai)
     {
         $maloai = $this->mysqli->real_escape_string($maloai);
         $this->mysqli->query(" DELETE FROM loai WHERE maloai = '$maloai'");
-        
     }
 }

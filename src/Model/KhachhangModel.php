@@ -51,7 +51,7 @@ class KhachhangModel
 
     public function addkhachhang($makhachhang, $hotenkh, $diachikh, $sodienthoaikh, $emailkh, $tendangnhapkh, $matkhaukh)
     {
-        
+
         $makhachhang = $this->mysqli->real_escape_string($makhachhang);
         $hotenkh = $this->mysqli->real_escape_string($hotenkh);
         $diachikh = $this->mysqli->real_escape_string($diachikh);
@@ -62,7 +62,6 @@ class KhachhangModel
 
 
         return $this->mysqli->query("INSERT INTO khachhang (makhachhang,hotenkh,diachikh,sodienthoaikh,emailkh,tendangnhapkh,matkhaukh) VALUES ('$makhachhang','$hotenkh','$diachikh','$sodienthoaikh','$emailkh','$tendangnhapkh','$matkhaukh')");
-    
     }
 
     public function deletekhachhang($makhachhang)
@@ -71,6 +70,3 @@ class KhachhangModel
         $this->mysqli->query(" DELETE FROM khachhang WHERE makhachhang = '$makhachhang'");
     }
 }
-
-
-
